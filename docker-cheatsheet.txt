@@ -14,6 +14,12 @@ Commit ID:      c7337
 Note:           Some entries have more than one example
 
 
+NOTES TO CATEGORIZE/MOVE - SK 08/2/19
+------------------------
+Inside a container (i.e. PHPMyAdmin) try connecting to a remote DB
+# php -r '$c = mysqli_connect("DBHOST", "USR", "PW", "", "3306"); if(!$c) {echo "Cannot connect"; } else {$result = $c->query("SELECT User from mysql.user"); print_r($result->fetch_all()); }'
+
+
 MANAGE REGISTRY
 ---------------
 
