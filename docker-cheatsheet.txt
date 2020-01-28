@@ -1,28 +1,33 @@
 /---------------------------------------------------------------\
 |  Original Author:  Lucian Maly <lucian.maly@oracle.com>       |
-|  Last update: 2018-08-14 (for Docker v1.10.2, build c3959b1,  |
-|                        Docker-machine v0.7.0, build a650a40,  |
-|                        Docker-compose v1.6.2, build 4d72027)  |
+|  Last update: 2020-01-28 (for Docker v1.10.2, build c3959b1,  |
+|                       Docker-machine v1.13.1, build 07f3374,  |
+|                       Docker-compose v1.25.0, build 661ac20e  |
 \---------------------------------------------------------------/
-
-LEGEND
-------
-
-Image names:    redis, jenkins, nginx
-Container name: mydb
-Commit ID:      c7337
-Note:           Some entries have more than one example
-
 
 NOTES TO CATEGORIZE/MOVE - SK 08/2/19
 ------------------------
 Inside a container (i.e. PHPMyAdmin) try connecting to a remote DB
 # php -r '$c = mysqli_connect("DBHOST", "USR", "PW", "", "3306"); if(!$c) {echo "Cannot connect"; } else {$result = $c->query("SELECT User from mysql.user"); print_r($result->fetch_all()); }'
 
+PRUNE
+-----
+$ docker system prune
+
+Or to include volumes as well:
+$ docker system prune --volumes
+
+WARNING! This will remove:
+        - all stopped containers
+        - all networks not used by at least one container
+        - all volumes not used by at least one container
+        - all dangling images
+        - all build cache
+Are you sure you want to continue? [y/N] y
+
 
 MANAGE REGISTRY
 ---------------
-
 Log in to the Docker hub registry
 $ docker login <someregistry.example.com>
 
@@ -41,7 +46,6 @@ $ docker pull registry-host:5000/lmaly/f20
 
 GENERAL USAGE
 -------------
-
 Find out installed Docker version:
 $ docker --version
 $ docker version
@@ -111,7 +115,6 @@ $ docker logs <container_name>
 
 MANAGE CONTAINERS
 -----------------
-
 List running containers:
 $ docker ps
 
@@ -169,7 +172,6 @@ $ docker inspect -f '{{.Config.Hostname}}' b7e2fe3b2e9b
 
 BUILD IMAGES
 ------------
-
 Build an image from Dockerfile in the current directory:
 $ docker build --tag myimage .
 $ docker build -t <dockerhub_username>/<dockerhub_repository> .
@@ -245,7 +247,6 @@ $ docker images
 
 VOLUMES
 -------
-
 Create a local volume:
 $ docker volume create --name myvol
 
@@ -287,7 +288,6 @@ $ docker inspect -f {{.Mounts}} c773
 
 NETWORKING
 ----------
-
 -Most of the time, docker0 bridge on the host will have address 172.17.42.1
 -All containers will get address in 172.17.42.0/24 network and docker0 will be their gw
 -on the host itself, there will be virtual NIC (e.g. veth450b81a)
@@ -373,7 +373,6 @@ $ docker -d --ipv6
 
 PERFORMANCE & DEBUG
 -------------------
-
 Starting Docker in debug mode:
 $ docker -d -D
 
@@ -442,7 +441,6 @@ $ ls -R /mnt/sda1/var/lib/docker/aufs/mnt/<c7337...>
 
 SECURITY
 --------
-
 Defang setuid/setgid binaries:
 $ docker run debian \
   find \ -perm +6000 -type f -exec ls -ld {} \; 2> /dev/null
@@ -478,7 +476,6 @@ $ docker run -it -v /tmp/:/tmp/host:Z fedora bash
 
 APPENDIX#1 - USAGE
 ------------------
-
 [lmaly@oracle-linux ~]$ docker --help
 [lmaly@oracle-linux ~]$ docker COMMAND --help
 
@@ -710,7 +707,6 @@ $ docker ps -a
 
 APPENDIX#3 - AWS
 ----------------
-
 (1) Setup Amazon EC2 container service:
 $ sudo yum -y install python
 $ pip install awscli
@@ -746,7 +742,6 @@ $ aws ecs stop-tasks --cluster testing --task b64b1d23-bad2-872e-b007-88fd6
 
 APPENDIX#4 - DOCKER MACHINE
 ---------------------------
-
 Docker-machine is client-side tool that you run on your local host and that allows you to start a server in a remote public cloud and use it as a Docker host if it were local.
 
 (1) Generate an API access token for using Docker Machine in the Digital Ocean UI.
@@ -820,7 +815,6 @@ $ docker-machine stop node1
 
 APPENDIX#5 - DOCKER COMPOSE
 ---------------------------
-
 [lmaly@lmaly-au-linux ~]$ docker-compose --help
 Define and run multi-container applications with Docker.
 
