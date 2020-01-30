@@ -44,6 +44,12 @@ $ docker push registry-host:5000/lmaly/f20
 $ docker pull registry-host:5000/lmaly/f20
 
 
+NEED "RUN" PARAMETERS FROM A RUNNING CONTAINER
+----------------------------------------------
+For example, you have a container that was started from another application.
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike <CONTAINER_ID>
+
+
 GENERAL USAGE
 -------------
 Find out installed Docker version:
