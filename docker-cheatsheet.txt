@@ -46,9 +46,9 @@ $ docker pull registry-host:5000/lmaly/f20
 
 NEED "RUN" PARAMETERS FROM A RUNNING CONTAINER
 ----------------------------------------------
-For example, you have a container that was started from another application.
+For example, you have a container that was started from another application.  Two examples:
 # docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike <CONTAINER_ID>
-
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nexdrew/rekcod <CONTAINER_ID>
 
 GENERAL USAGE
 -------------
