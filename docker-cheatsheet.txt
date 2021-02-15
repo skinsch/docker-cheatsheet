@@ -5,7 +5,7 @@
 |                       Docker-compose v1.25.0, build 661ac20e  |
 \---------------------------------------------------------------/
 
-NOTES TO CATEGORIZE/MOVE - SK 08/2/19
+NOTES TO CATEGORIZE/MOVE - SK 02/15/21
 ------------------------
 Inside a container (i.e. PHPMyAdmin) try connecting to a remote DB
 # php -r '$c = mysqli_connect("DBHOST", "USR", "PW", "", "3306"); if(!$c) {echo "Cannot connect"; } else {$result = $c->query("SELECT User from mysql.user"); print_r($result->fetch_all()); }'
@@ -397,6 +397,14 @@ Debugging the container's resources:
 $ docker top c7337
 $ docker top <container_name>
 
+Unable to access Container because bad Config Change (i.e. Apache looping)
+$ docker stop web_1
+$ docker cp web_1:/etc/apache2/sites-enabled/apache2.conf .
+  (correct the file)
+$ docker cp apache.conf web_1:/etc/apache2/sites-enabled/apache2.conf
+
+STRESS TESTING
+--------------
 Create load average of around 5 by creating two CPU-bound processes, one I/O bound process and two memory allocation processes:
 $ docker run --rm -ti progrium/stress --cpu 2 --io 1 --vm 2 --vm-bytes 128M --timeout 120s
 
