@@ -5,10 +5,24 @@
 |                       Docker-compose v1.25.0, build 661ac20e  |
 \---------------------------------------------------------------/
 
-NOTES TO CATEGORIZE/MOVE - SK 02/15/21
+NOTES TO CATEGORIZE/MOVE - SK 02/16/21
 ------------------------
 Inside a container (i.e. PHPMyAdmin) try connecting to a remote DB
 # php -r '$c = mysqli_connect("DBHOST", "USR", "PW", "", "3306"); if(!$c) {echo "Cannot connect"; } else {$result = $c->query("SELECT User from mysql.user"); print_r($result->fetch_all()); }'
+
+SEE WHAT NETWORK A CONTAINER IS USING
+-------------------------------------
+To see what network(s) your container is on, assuming your container is called c1:
+$ docker inspect c1 -f "{{json .NetworkSettings.Networks }}"
+
+To disconnect your container from the first network (assuming your first network is called net1):
+$ docker network disconnect net1 c1
+
+Then to reconnect it to another network (assuming it's called net2):
+$ docker network connect net2 c1
+
+To check if two containers (or more) are on a network together:
+$ docker network inspect net1 -f "{{json .Containers }}"
 
 PRUNE
 -----
