@@ -31,6 +31,9 @@ $ docker system prune
 Or to include volumes as well:
 $ docker system prune --volumes
 
+Or remove all unused images not just dangling ones:
+$ docker system prune --all
+
 WARNING! This will remove:
         - all stopped containers
         - all networks not used by at least one container
