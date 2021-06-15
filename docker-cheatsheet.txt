@@ -24,6 +24,18 @@ $ docker network connect net2 c1
 To check if two containers (or more) are on a network together:
 $ docker network inspect net1 -f "{{json .Containers }}"
 
+
+SECURITY / SELINUX
+------------------
+Show which containers have "SecurityOpt" set:
+$ docker ps --quiet --all | xargs docker inspect --format '{{ .Id }}: SecurityOpt={{ .HostConfig.SecurityOpt }}'
+
+Force container to not elevate above what it's set to using security_opt.. Example in docker-compose.yml:
+    security_opt:
+      - no-new-privileges:true
+
+The label option under security_opt sets an SELinux label for the container. Whereas user:uid:gid sets the user-id and group-id to use for the container's main process.
+
 PRUNE
 -----
 $ docker system prune
