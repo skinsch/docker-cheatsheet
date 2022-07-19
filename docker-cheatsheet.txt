@@ -185,7 +185,8 @@ $ docker rm <container_name>
 Force removal of the image, if the image is referenced in one or more repositories:
 $ docker rmi -f ubuntu:trusty
 
-FILTERING:
+FILTERING - SK 07192022
+---------
 Delete all stopped containers:
 $ docker rm $(docker ps --filter status=exited -q)
 
