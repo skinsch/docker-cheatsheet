@@ -185,6 +185,7 @@ $ docker rm <container_name>
 Force removal of the image, if the image is referenced in one or more repositories:
 $ docker rmi -f ubuntu:trusty
 
+FILTERING:
 Delete all stopped containers:
 $ docker rm $(docker ps --filter status=exited -q)
 
@@ -205,6 +206,15 @@ Query a specific metadata of a running container:
 $ docker inspect -f '{{.NetworkSettings.IPAddress}}' c7337
 $ docker inspect -f '{{.Config.Hostname}}' b7e2fe3b2e9b
 
+Here is how we query the other columns with docker ps.
+$ docker ps --format '{{.Names}}'
+$ docker ps --format '{{.ID}}'
+$ docker ps --format '{{.Image}}'
+$ docker ps --format '{{.Command}}'
+$ docker ps --format '{{.RunningFor}}'
+$ docker ps --format '{{.Status}}'
+$ docker ps --format '{{.Ports}}'
+$ docker ps --format '{{.Names}}, {{.Ports}}'
 
 BUILD IMAGES
 ------------
