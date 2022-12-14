@@ -1,8 +1,6 @@
 /---------------------------------------------------------------\
-|  Original Author:  Lucian Maly <lucian.maly@oracle.com>       |
-|  Last update: 2020-01-28 (for Docker v1.10.2, build c3959b1,  |
-|                       Docker-machine v1.13.1, build 07f3374,  |
-|                       Docker-compose v1.25.0, build 661ac20e  |
+|  Last updated: 2022-12-14                                     |
+|                                                               |
 \---------------------------------------------------------------/
 
 NOTES TO CATEGORIZE/MOVE - SK 12/14/22
