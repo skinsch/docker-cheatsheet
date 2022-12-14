@@ -5,10 +5,14 @@
 |                       Docker-compose v1.25.0, build 661ac20e  |
 \---------------------------------------------------------------/
 
-NOTES TO CATEGORIZE/MOVE - SK 02/16/21
+NOTES TO CATEGORIZE/MOVE - SK 12/14/22
 ------------------------
 Inside a container (i.e. PHPMyAdmin) try connecting to a remote DB
 # php -r '$c = mysqli_connect("DBHOST", "USR", "PW", "", "3306"); if(!$c) {echo "Cannot connect"; } else {$result = $c->query("SELECT User from mysql.user"); print_r($result->fetch_all()); }'
+
+Create a docker-compose from running containers like this:
+$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/red5d/docker-autocompose \
+       sonarr radarr readarr lidarr overseerr kavita jackett nzbhydra2 sabnzbd deluge-torrent-seedbox > media.docker-compose.yml
 
 SEE WHAT NETWORK A CONTAINER IS USING
 -------------------------------------
