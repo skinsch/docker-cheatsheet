@@ -376,6 +376,20 @@ $ docker network connect mynet c7337
 Disconnect container from a network:
 $ docker network disconnect mynet c7337
 
+Show which networks are used by container:
+$ docker network inspect $(docker network ls | awk '$3 == "bridge" { print $1}') | jq -r '.[] | .Name + " " + .IPAM.Config[0].Subnet' -
+blacklist_default 172.29.0.0/16
+bridge 172.17.0.0/16
+home-assistant_default 192.168.80.0/20
+librenms_default 172.23.0.0/16
+misp-docker_default 192.168.224.0/20
+openca_access-bridge 192.168.16.0/20
+openca_application-bridge 192.168.0.0/20
+recipe_default 172.28.0.0/16
+siem_default 172.27.0.0/16
+tftpboot_default 172.30.0.0/16
+wg-access-server_default 172.24.0.0/16
+
 Configure a hostname in the container:
 $ docker run --rm -ti --hostname="mycontainer.example.com" ubuntu:latest
 
